@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Inter:regular,bold,italic&subset=latin,latin-ext');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 95vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* If there is a specific style for the page body or html, you can add it here */
+

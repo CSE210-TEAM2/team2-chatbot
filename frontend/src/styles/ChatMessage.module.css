@@ -1,0 +1,17 @@
+.chatMessageContainer {
+  display: flex;
+  align-items: left;
+  width: 50%;
+}
+
+img {
+  width: 50px;
+}
+
+p {
+  text-align: left;
+}
+
+.col {
+  flex: 1;
+}
