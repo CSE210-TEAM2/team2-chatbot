@@ -1,0 +1,32 @@
+.inputGroup {
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid #ccc; /* Adjust color as needed */
+    position: relative;
+    width: 50%;
+}
+
+.inputField {
+    width: calc(100% - 40px); /* Adjust width to make room for the button */
+    padding: 10px;
+    padding-right: 50px; /* Make padding larger on the right to hold the button */
+    border-radius: 10px;
+    border: 1px solid #fff; /* Adjust color as needed */
+    box-sizing: border-box;
+  }
+  
+.sendButton {
+    background-color: var(--primary-color, blue); /* Replace with actual color */
+    color: black;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.sendButton:focus,
+.sendButton:hover {
+    background-color: #00f7ffde; /* Replace with actual hover color */
+}
