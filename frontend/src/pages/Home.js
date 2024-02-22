@@ -1,5 +1,4 @@
 import Header from '../components/Header';
-import ChatMessage from '../components/ChatMessage';
 import InstructionMessage from '../components/InstructionMessage';
 import ChatHistory from '../components/ChatHistory';
 import MessageBox from '../components/MessageBox';
@@ -9,12 +8,7 @@ import React, { useState } from 'react';
 export default function Home() {
 
   // used to hide placeholder messages
-  const [isTyping, setIsTyping] = useState(false);
   const [userPrompts, setUserPrompts] = useState([]);
-
-  const handleUserInput = (e) => {
-    if (!isTyping) {setIsTyping(true);}
-  };
 
   const sendUserPrompt = (promptText) => {
     const newPrompt = { 
@@ -29,11 +23,11 @@ export default function Home() {
 	<div className={styles.container}>
 		<Header />
       
-		{!isTyping && <InstructionMessage />}
+		{(userPrompts.length === 0) && <InstructionMessage />}
     
 		<ChatHistory userPrompts={userPrompts} />
 
-	    <MessageBox handleUserInput={handleUserInput} sendUserPrompt={sendUserPrompt}/>
+	    <MessageBox sendUserPrompt={sendUserPrompt}/>
     </div>
   );
 }
