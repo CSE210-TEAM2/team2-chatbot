@@ -1,0 +1,19 @@
+.chatMessageContainer {
+  display: flex;
+  align-items: left;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 50px;
+}
+
+p {
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.col {
+  flex: 1;
+}
