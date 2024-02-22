@@ -1,6 +1,6 @@
 import ChatMessage from '../components/ChatMessage';
 import WelcomeMessage from '../components/WelcomeMessage';
-import styles from '../styles/InstructionMessage.module.css';
+import styles from '../styles/components/InstructionMessage.module.css';
 
 export default function InstructionMessage() {
 	return (

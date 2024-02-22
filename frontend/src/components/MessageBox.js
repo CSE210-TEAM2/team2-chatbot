@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../styles/MessageBox.module.css';
+import styles from '../styles/components/MessageBox.module.css';
 
 function MessageBox({sendUserPrompt}) {
   const [inputValue, setInputValue] = useState('');

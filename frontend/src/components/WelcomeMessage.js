@@ -1,4 +1,4 @@
-import styles from '../styles/WelcomeMessage.module.css';
+import styles from '../styles/components/WelcomeMessage.module.css';
 import TrendingTopic from './TrendingTopic';
 import icon from '../media/img/icon-bot.png'
 

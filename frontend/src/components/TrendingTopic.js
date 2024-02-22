@@ -1,4 +1,4 @@
-import styles from '../styles/TrendingTopic.module.css';
+import styles from '../styles/components/TrendingTopic.module.css';
 
 function TrendingTopic() {
   return (

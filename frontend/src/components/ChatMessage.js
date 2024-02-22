@@ -1,4 +1,4 @@
-import styles from '../styles/ChatMessage.module.css';
+import styles from '../styles/components/ChatMessage.module.css';
 import bot from '../media/img/icon-bot.png'
 import user from '../media/img/icon-user.png'
 

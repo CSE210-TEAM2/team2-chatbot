@@ -1,5 +1,5 @@
 import ChatMessage from '../components/ChatMessage';
-import styles from '../styles/ChatHistory.module.css';
+import styles from '../styles/components/ChatHistory.module.css';
 
 export default function ChatHistory({userPrompts}) {
 	return (
