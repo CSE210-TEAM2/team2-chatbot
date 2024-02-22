@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import styles from '../styles/MessageBox.module.css';
+import styles from '../styles/components/MessageBox.module.css';
 
-function MessageBox({handleUserInput, sendUserPrompt}) {
+function MessageBox({sendUserPrompt}) {
   const [inputValue, setInputValue] = useState('');
 
 
   const handleInputChange = (e) => {
-	//handleUserInput();
     setInputValue(e.target.value);
   };
   const handleSubmit = () => {
@@ -20,14 +19,21 @@ function MessageBox({handleUserInput, sendUserPrompt}) {
     // Reset input after submit
     setInputValue('');
   };
+	
+	const handleKeyDown = (e) => {
+		if (e.keyCode === 13) {
+			handleSubmit();
+		}
+	}
 
 	return (
-		<div className={styles.inputGroup} onClick={handleUserInput}>
+		<div className={styles.inputGroup}>
 			<input
         		className={styles.inputField}
 		        type="text"
 		        value={inputValue}
 		        onChange={handleInputChange}
+				onKeyDown={handleKeyDown}
 		        placeholder="Message TritonHealthBot..."
 		      />
       		<button className={styles.sendButton} onClick={handleSubmit}>&#x21E7;</button>
