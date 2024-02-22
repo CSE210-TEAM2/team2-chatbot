@@ -1,6 +1,7 @@
 import Header from '../components/Header';
-import WelcomeMessage from '../components/WelcomeMessage';
 import ChatMessage from '../components/ChatMessage';
+import InstructionMessage from '../components/InstructionMessage';
+import ChatHistory from '../components/ChatHistory';
 import MessageBox from '../components/MessageBox';
 import styles from '../styles/Home.module.css';
 import React, { useState } from 'react';
@@ -25,30 +26,12 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      <Header />
+	<div className={styles.container}>
+		<Header />
       
-      {!isTyping && (
-        <div className={styles.chatContainer1}>
-          <WelcomeMessage />
-          <ChatMessage
-            role="user"
-            text="How can I make an appointent with CAPS?"
-          />
-          <ChatMessage
-            role="bot"
-            text="To schedule your first appointment with CAPS, you can call CAPS at
-            (858) 534-3755, schedule an appointment through MyStudentChart,
-            or visit the Central Office at Galbraith Hall 190."
-          />
-        </div>
-      )}
+		{!isTyping && <InstructionMessage />}
     
-      <div className={styles.chatContainer2}> 
-        {userPrompts.map(prompt => (
-          <ChatMessage role={prompt.role} text={prompt.text} />
-        ))}
-      </div>
+		<ChatHistory userPrompts={userPrompts} />
 
 	    <MessageBox handleUserInput={handleUserInput} sendUserPrompt={sendUserPrompt}/>
     </div>
