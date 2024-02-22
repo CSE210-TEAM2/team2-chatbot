@@ -27,9 +27,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Header />
-      <WelcomeMessage />
+      
       {!isTyping && (
-        <div>
+        <div className={styles.chatContainer1}>
+          <WelcomeMessage />
           <ChatMessage
             role="user"
             text="How can I make an appointent with CAPS?"
@@ -43,11 +44,12 @@ export default function Home() {
         </div>
       )}
     
-      <div>
+      <div className={styles.chatContainer2}> 
         {userPrompts.map(prompt => (
           <ChatMessage role={prompt.role} text={prompt.text} />
         ))}
       </div>
+
 	    <MessageBox handleUserInput={handleUserInput} sendUserPrompt={sendUserPrompt}/>
     </div>
   );
