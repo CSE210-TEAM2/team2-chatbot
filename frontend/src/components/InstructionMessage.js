@@ -1,10 +1,10 @@
 import ChatMessage from '../components/ChatMessage';
 import WelcomeMessage from '../components/WelcomeMessage';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/InstructionMessage.module.css';
 
 export default function InstructionMessage() {
 	return (
-        <div className={styles.chatContainer1}>
+        <div className={styles.container}>
           <WelcomeMessage />
           <ChatMessage
             role="user"

@@ -9,24 +9,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-.chatContainer1 {
-  align-items: center;
-  justify-content: space-between;
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  flex-direction: column;
-}
-
-.chatContainer2 {
-  align-items: left;
-  justify-content: space-between;
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  
-}
-
 
 /* If there is a specific style for the page body or html, you can add it here */
 

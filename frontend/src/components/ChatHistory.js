@@ -1,9 +1,9 @@
 import ChatMessage from '../components/ChatMessage';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/ChatHistory.module.css';
 
 export default function ChatHistory({userPrompts}) {
 	return (
-      <div className={styles.chatContainer2}> 
+      <div className={styles.container}> 
         {userPrompts.map(prompt => (
           <ChatMessage role={prompt.role} text={prompt.text} />
         ))}
