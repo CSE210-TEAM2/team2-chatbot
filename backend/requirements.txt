@@ -1,0 +1,10 @@
+kaleido
+python-multipart
+cohere
+langchain
+langchain-community
+pypdf
+langchainhub
+llama-cpp-python
+chromadb
+bs4
