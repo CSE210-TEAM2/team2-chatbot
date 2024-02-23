@@ -13,10 +13,29 @@ export default function Home() {
   const sendUserPrompt = (promptText) => {
     const newPrompt = { 
       role:"user",
-      text:promptText
+      text:promptText,
     }; // Create a new message object
-    console.log(newPrompt);
-    setUserPrompts([...userPrompts, newPrompt]); // Add the new message to the state
+
+	let response = {
+	  role:"bot",
+	  text:"",
+	};
+	
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(newPrompt)
+	};
+
+	fetch('/fake', options).then(res => res.json()).then(data => {
+		response.text = data.text;
+		// console.log(newPrompt);
+    	setUserPrompts(userPrompts.concat([newPrompt, response])); // Add the new message to the state	console.log(data);
+	});
+	
+    
   };
 
   return (

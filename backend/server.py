@@ -1,9 +1,9 @@
 # Filename - server.py
  
 # Import flask and datetime module for showing date and time
-from flask import Flask
+from flask import Flask, request
 import datetime
-import langchain_chatbot
+# import langchain_chatbot
  
 x = datetime.datetime.now()
  
@@ -11,7 +11,7 @@ x = datetime.datetime.now()
 app = Flask(__name__)
 
 
-
+'''
 @app.route('/chat', methods=['POST'])
 def chat():
     try:
@@ -20,8 +20,14 @@ def chat():
         return jsonify(response)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+'''
 
-
+# Fake response
+@app.route('/fake', methods=['POST'])
+def fake():
+	return {
+		"text":"This is a fake response! Echo prompt: " + request.json["text"],
+	}
  
 # Route for seeing a data
 @app.route('/data')
