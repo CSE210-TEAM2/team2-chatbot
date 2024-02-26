@@ -1,37 +1,37 @@
 .inputGroup {
-    display: flex;
-    border-radius: 10px;
-    border: 1px solid #ccc; /* Adjust color as needed */
-    position: relative;
-    width: 100%;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #ccc; /* Adjust color as needed */
+  position: relative;
+  width: 100%;
 }
 
 .inputField {
-    width: calc(100% - 40px); /* Adjust width to make room for the button */
-    padding: 10px;
-    padding-right: 50px; /* Make padding larger on the right to hold the button */
-    border-radius: 10px;
-    border: 1px solid #fff; /* Adjust color as needed */
-    box-sizing: border-box;
-    font-family: Inter;
-    font-size: 1em;
-  }
+  width: calc(100% - 40px); /* Adjust width to make room for the button */
+  padding: 10px;
+  padding-right: 50px; /* Make padding larger on the right to hold the button */
+  border-radius: 10px;
+  border: 1px solid #fff; /* Adjust color as needed */
+  box-sizing: border-box;
+  font-family: Inter;
+  font-size: 1em;
+}
   
 .sendButton {
-    background-color: var(--primary-color);
-    color: black;
-    font-size: 20px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 10px;
-    margin: 5px;
-    cursor: pointer;
+  background-color: var(--primary-color);
+  color: black;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin: 5px;
+  cursor: pointer;
 }
 
 .sendButton:hover {
-    background-color: var(--primary-color-light);
+  background-color: var(--primary-color-light);
 }
 
 textarea:focus, input:focus{
-    outline: none;
+  outline: none;
 }

@@ -10,7 +10,6 @@ function ChatMessage(props) {
         {props.role === 'user' ? <strong>You</strong> : <strong>TritonHealthBot</strong>}
         <p>{props.text}</p>
       </div>
-      
     </div>
   );
 }

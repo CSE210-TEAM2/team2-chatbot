@@ -1,21 +1,21 @@
 .trendingTopic {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0; /* Adjust as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0; /* Adjust as needed */
 }
   
 .topicButton {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 10px 20px;
-    margin: 0 10px;
-    cursor: pointer;
-    font-family: Inter;
-    font-size: 1em;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-family: Inter;
+  font-size: 1em;
 }
 
 .topicButton:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
