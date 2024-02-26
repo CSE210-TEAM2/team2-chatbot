@@ -3,7 +3,7 @@
     border-radius: 10px;
     border: 1px solid #ccc; /* Adjust color as needed */
     position: relative;
-    width: 50%;
+    width: 100%;
 }
 
 .inputField {
@@ -13,10 +13,12 @@
     border-radius: 10px;
     border: 1px solid #fff; /* Adjust color as needed */
     box-sizing: border-box;
+    font-family: Inter;
+    font-size: 1em;
   }
   
 .sendButton {
-    background-color: var(--primary-color, blue); /* Replace with actual color */
+    background-color: var(--primary-color);
     color: black;
     font-size: 20px;
     border: none;
@@ -26,7 +28,10 @@
     cursor: pointer;
 }
 
-.sendButton:focus,
 .sendButton:hover {
-    background-color: #00f7ffde; /* Replace with actual hover color */
+    background-color: var(--primary-color-light);
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }

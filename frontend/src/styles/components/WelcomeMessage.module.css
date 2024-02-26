@@ -1,15 +1,17 @@
-.chatbotContainer {
+.welcomeMessage {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 70vh;
+  margin: 30px 0;
 }
 
-img {
-  width: 50px;
-  padding: 0 10px;
+.welcomeMessage img {
+  width: 75px;
+  padding-top: 50px;
 }
 
-.welcomeMessage {
+.welcomeMessage p {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -17,6 +19,6 @@ img {
   margin: 30px;
 }
 
-h3 {
+.welcomeMessage h3 {
   text-align: center;
 }
