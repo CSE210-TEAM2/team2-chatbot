@@ -1,19 +1,18 @@
 .chatMessageContainer {
   display: flex;
   align-items: left;
-  width: 90%;
+  width: 100%;
   margin-bottom: 20px;
 }
 
-img {
+.chatMessageContainer img {
   width: 50px;
+  height: 50px;
+  margin: 0 10px;
 }
 
-p {
+.chatMessageContainer p {
   text-align: left;
   word-wrap: break-word;
-}
-
-.col {
-  flex: 1;
+  font-size: 1em;
 }

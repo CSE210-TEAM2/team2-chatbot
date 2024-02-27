@@ -1,17 +1,17 @@
 .header {
   display: flex;
   align-items: center;
-  background-color: var(--primary-color, blue); /* Assuming a light grey background */
+  background-color: var(--primary-color);
   width: 100vw;
   padding: 5px 0; /* Adjust the padding as needed */
 }
 
-img {
+.header img {
   width: 50px;
   padding: 0 10px;
 }
 
-.logo {
+.text {
   font-size: 1.5rem; /* Adjust the size as needed */
   font-weight: bold;
   color: #333; /* Assuming a dark text color */
