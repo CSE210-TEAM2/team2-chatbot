@@ -3,15 +3,12 @@ import os
 from flask import Flask, request, jsonify
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
-# from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
-# from langchain.vectorstores import Chroma
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
-
 
 app = Flask(__name__)
 
@@ -60,15 +57,15 @@ def initialize_qa_chain():
                                            retriever=retriever,
                                            return_source_documents=True)
 
-@app.route('/query', methods=['GET'])
+@app.route('/fake', methods=['POST'])
 def handle_query():
-    query = request.args.get('query', '')
+    query = request.json["text"]    
     if query:
         llm_response = qa_chain(query)
         # Prepare the response data for JSON serialization
         response_data = {
             'query': llm_response['query'],
-            'result': llm_response['result'],
+            'text': llm_response['result'],
             'source_documents': [{
                 'page_content': doc.page_content,
                 'metadata': doc.metadata
