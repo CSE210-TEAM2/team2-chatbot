@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ChatMessage from '../components/ChatMessage';
+import ChatMessage from './ChatMessage';
 import styles from '../styles/components/ChatHistory.module.css';
 
 export default function ChatHistory({userPrompts}) {

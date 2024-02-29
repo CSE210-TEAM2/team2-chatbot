@@ -17,14 +17,14 @@ export default function Home() {
 			status:"ok",
     }; // Create a new message object
 
-		setUserPrompts(userPrompts.concat(newPrompt)); // display user's message while waiting for response
-
 		let response = {
 			role:"bot",
 			text:"",
-			status:"",
+			status:"loading",
 		};
 		
+		setUserPrompts(userPrompts.concat([newPrompt, response]));  // display user's message while waiting for response
+
 		const options = {
 			method: 'POST',
 			headers: {
