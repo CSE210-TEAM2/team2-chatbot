@@ -13,9 +13,7 @@ function MessageBox({sendUserPrompt}) {
     // This could be an API call or some other action
 		if (inputValue) {
 			sendUserPrompt(inputValue);
-			console.log('sent user prompt:', inputValue);
 		}
-    console.log('Submitted:', inputValue);
     // Reset input after submit
     setInputValue('');
   };

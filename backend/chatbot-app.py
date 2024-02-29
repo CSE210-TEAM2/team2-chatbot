@@ -57,7 +57,7 @@ def initialize_qa_chain():
                                            retriever=retriever,
                                            return_source_documents=True)
 
-@app.route('/fake', methods=['POST'])
+@app.route('/chatbot', methods=['POST'])
 def handle_query():
     query = request.json["text"]    
     if query:

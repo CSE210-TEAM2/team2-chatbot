@@ -14,11 +14,15 @@ export default function Home() {
     const newPrompt = { 
       role:"user",
       text:promptText,
+			status:"ok",
     }; // Create a new message object
+
+		setUserPrompts(userPrompts.concat(newPrompt)); // display user's message while waiting for response
 
 		let response = {
 			role:"bot",
 			text:"",
+			status:"",
 		};
 		
 		const options = {
@@ -29,10 +33,17 @@ export default function Home() {
 			body: JSON.stringify(newPrompt)
 		};
 
-		fetch('/fake', options).then(res => res.json()).then(data => {
+		fetch('/chatbot', options)
+		.then((res) => res.json())
+		.then(data => {
 			response.text = data.text;
-			// console.log(newPrompt);
-			setUserPrompts(userPrompts.concat([newPrompt, response])); // Add the new message to the state console.log(data);
+			response.status = "ok";
+			setUserPrompts(userPrompts.concat([newPrompt, response]));
+		})
+		.catch((err) => {
+			response.text = "Sorry, I can't connect to the server right now. Please try again later.";
+			response.status = "error";
+			setUserPrompts(userPrompts.concat([newPrompt, response]));
 		});
   };
 
