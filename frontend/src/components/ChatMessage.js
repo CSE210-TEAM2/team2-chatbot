@@ -15,8 +15,20 @@ function ChatMessage(props) {
               return <p className={styles.error}>{props.text}</p>;
             } else if (props.status === 'loading') {
               return <ChatbotLoading />;
-            } else {
-              return <p>{props.text}</p>;
+            } else if (props.role === 'user') {
+              return <p>{props.text}</p>
+            } else if (props.role === 'bot') {
+              console.log(props);
+              return (
+                <div>
+                  <p>{props.text}</p>
+                    {props.sources.map(source => (
+                    <div>
+                      <p>{source.metadata.source}</p>
+                    </div>
+                    ))}	
+                </div>
+                );
             }
           })()
         }

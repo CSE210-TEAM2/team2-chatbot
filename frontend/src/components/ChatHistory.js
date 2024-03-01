@@ -10,7 +10,7 @@ export default function ChatHistory({userPrompts}) {
     <div className={styles.chatHistory}>
       <div id="anchor">
         {userPrompts.map(prompt => (
-          <ChatMessage role={prompt.role} text={prompt.text} status={prompt.status} />
+          <ChatMessage role={prompt.role} text={prompt.text} status={prompt.status} sources={prompt.sources} />
         ))}
       </div>
     </div>
