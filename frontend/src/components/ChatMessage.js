@@ -15,7 +15,7 @@ function FormatResponse(props) {
         const prefix = "https://github.com/CSE210-TEAM2/team2-chatbot/tree/main/backend/";
         const rp = source.metadata.source;
         const pageNumber = source.metadata.page;
-        return <li><a href={prefix + rp}>{rp + ", P" + pageNumber}</a></li>;
+        return <li><a href={prefix + rp} target="_blank">{rp + ", page " + pageNumber}</a></li>;
       })}	
     </div>
   )
