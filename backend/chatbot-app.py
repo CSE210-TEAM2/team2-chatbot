@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, jsonify
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
-from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
+from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader, TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -17,10 +17,36 @@ qa_chain = None
 retriever = None
 
 
+# def update_db(persist_directory):
+#     # Load and process the text files
+#     loader = DirectoryLoader('./PDFs_Dataset', glob="./*.pdf", loader_cls=PyPDFLoader)
+#     documents = loader.load()
+
+#     # Splitting the text into smaller chunks
+#     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+#     texts = text_splitter.split_documents(documents)
+
+#     # Embed and store the texts
+#     embedding = OpenAIEmbeddings(model='text-embedding-3-small')
+
+#     vectordb = Chroma.from_documents(documents=texts,
+#                                      embedding=embedding,
+#                                      persist_directory=persist_directory)
+    
+#     return vectordb
+
+
 def update_db(persist_directory):
-    # Load and process the text files
-    loader = DirectoryLoader('./PDFs_Dataset', glob="./*.pdf", loader_cls=PyPDFLoader)
-    documents = loader.load()
+    # Load PDF files
+    pdf_loader = DirectoryLoader('./Dataset/PDFs', glob="./*.pdf", loader_cls=PyPDFLoader)
+    pdf_documents = pdf_loader.load()
+
+    # Load txt files
+    txt_loader = DirectoryLoader('./Dataset/Webpages/Files', glob="./*.txt", loader_cls=TextLoader)
+    txt_documents = txt_loader.load()
+
+    # Combine PDF and txt documents
+    documents = pdf_documents + txt_documents
 
     # Splitting the text into smaller chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
