@@ -16,3 +16,7 @@
   word-wrap: break-word;
   font-size: 1em;
 }
+
+.error {
+  color: var(--error-color);
+}

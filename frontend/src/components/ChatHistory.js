@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ChatMessage from '../components/ChatMessage';
+import ChatMessage from './ChatMessage';
 import styles from '../styles/components/ChatHistory.module.css';
 
 export default function ChatHistory({userPrompts}) {
@@ -10,7 +10,7 @@ export default function ChatHistory({userPrompts}) {
     <div className={styles.chatHistory}>
       <div id="anchor">
         {userPrompts.map(prompt => (
-          <ChatMessage role={prompt.role} text={prompt.text} />
+          <ChatMessage role={prompt.role} text={prompt.text} status={prompt.status} sources={prompt.sources} />
         ))}
       </div>
     </div>

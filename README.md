@@ -10,9 +10,13 @@ First, navigate to the backend directory by running:
 
     cd backend
 
+If you are using this project for the first time, please install dependencies by running:
+
+    pip install -r requirements.txt
+
 To start the server, run:
 
-    python server.py
+    python chatbot-app.py
 
 ### Frontend Framework
 This project mainly uses React framwork and Node.js tools.
@@ -22,7 +26,7 @@ From the backend directory, navigate to the frontend directory by running:
     cd ..
     cd frontend
 
-If you are using this project first time, please install dependencies by running:
+If you are using this project for the first time, please install dependencies by running:
 
     npm install
 

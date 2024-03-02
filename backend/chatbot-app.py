@@ -57,7 +57,7 @@ def initialize_qa_chain():
                                            retriever=retriever,
                                            return_source_documents=True)
 
-@app.route('/fake', methods=['POST'])
+@app.route('/chatbot', methods=['POST'])
 def handle_query():
     query = request.json["text"]    
     if query:
@@ -65,7 +65,7 @@ def handle_query():
         # Prepare the response data for JSON serialization
         response_data = {
             'query': llm_response['query'],
-            'text': llm_response['result'],
+            'result': llm_response['result'],
             'source_documents': [{
                 'page_content': doc.page_content,
                 'metadata': doc.metadata
