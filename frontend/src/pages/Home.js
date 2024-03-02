@@ -14,17 +14,19 @@ export default function Home() {
     const newPrompt = { 
       role:"user",
       text:promptText,
-			status:"ok",
+	  sources: [],
+	  status:"ok",
     }; // Create a new message object
-
-		setUserPrompts(userPrompts.concat(newPrompt)); // display user's message while waiting for response
 
 		let response = {
 			role:"bot",
 			text:"",
-			status:"",
+			sources:[],
+			status:"loading",
 		};
 		
+		setUserPrompts(userPrompts.concat([newPrompt, response]));  // display user's message while waiting for response
+
 		const options = {
 			method: 'POST',
 			headers: {
@@ -36,12 +38,15 @@ export default function Home() {
 		fetch('/chatbot', options)
 		.then((res) => res.json())
 		.then(data => {
-			response.text = data.text;
+			response.text = data.result;
+			response.sources = data.source_documents;
+			console.log(response.sources);
 			response.status = "ok";
 			setUserPrompts(userPrompts.concat([newPrompt, response]));
 		})
 		.catch((err) => {
 			response.text = "Sorry, I can't connect to the server right now. Please try again later.";
+			response.sources = [];
 			response.status = "error";
 			setUserPrompts(userPrompts.concat([newPrompt, response]));
 		});
