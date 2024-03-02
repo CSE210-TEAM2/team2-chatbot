@@ -1,9 +1,23 @@
 # TritonHealthBot
-CSE 210 Team 2
+TritonHealthBot is a chatbot designed for UCSD students to streamline their access to health and well-being resources, specifically focusing on UCSD CAPS (Counseling and Psychological Services). The bot aims to simplify the search for relevant health information by summarizing content from various health websites and providing citations. It will initially address urgent student questions such as health queries. The ultimate goal is to ensure students have quick and effective access to health resources, leveraging CAPS' comprehensive services which include counseling, psychiatric services, workshops, and more, all tailored to support students' academic success and personal development.
 
-## Tech
+## Useful Links
+- [Meeting Notes](https://docs.google.com/document/d/10_YFkNc_x7RxIQV_6Eay-ylbWOQVwaC6v4CWlF5ivQk/edit?usp=sharing)
+- [Google Drive Team Folder](https://drive.google.com/drive/folders/1wDtSX2dUXvWqe02iN8VIGH7IkauKgsqX)
 
-### Backend Framework
+## Tech Stack
+
+### Front End
+- React, Node.js
+### Back End
+- Flask, LangChain, Chroma
+
+## Getting Started
+
+These instructions will give you a copy of the project up and running on
+your local machine
+
+### Backend Setup
 This project uses a Flask server for the backend.
 
 First, navigate to the backend directory by running:
@@ -18,7 +32,7 @@ To start the server, run:
 
     python chatbot-app.py
 
-### Frontend Framework
+### Frontend Setup
 This project mainly uses React framwork and Node.js tools.
 
 From the backend directory, navigate to the frontend directory by running:
@@ -61,9 +75,8 @@ Contains all the css files.
 ##### media
 Contains all the images and other media resources.
 
-## Useful Links
-- [Meeting Notes](https://docs.google.com/document/d/10_YFkNc_x7RxIQV_6Eay-ylbWOQVwaC6v4CWlF5ivQk/edit?usp=sharing)
-- [Google Drive Team Folder](https://drive.google.com/drive/folders/1wDtSX2dUXvWqe02iN8VIGH7IkauKgsqX)
-
 ## Resources
 - [How to connect ReactJS with flask API](https://www.geeksforgeeks.org/how-to-connect-reactjs-with-flask-api/)
+
+## Acknowledgments
+  - Thanks to Hao who made suggestions to the projects
