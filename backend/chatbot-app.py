@@ -1,12 +1,13 @@
 # app.py
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader, TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+
 
 os.environ["OPENAI_API_KEY"] = os.getenv('OPENAI_API_KEY')
 
@@ -15,25 +16,6 @@ app = Flask(__name__)
 # Initialize global variables for the chain and retriever
 qa_chain = None
 retriever = None
-
-
-# def update_db(persist_directory):
-#     # Load and process the text files
-#     loader = DirectoryLoader('./PDFs_Dataset', glob="./*.pdf", loader_cls=PyPDFLoader)
-#     documents = loader.load()
-
-#     # Splitting the text into smaller chunks
-#     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
-#     texts = text_splitter.split_documents(documents)
-
-#     # Embed and store the texts
-#     embedding = OpenAIEmbeddings(model='text-embedding-3-small')
-
-#     vectordb = Chroma.from_documents(documents=texts,
-#                                      embedding=embedding,
-#                                      persist_directory=persist_directory)
-    
-#     return vectordb
 
 
 def update_db(persist_directory):
@@ -78,10 +60,18 @@ def initialize_qa_chain():
 
     # Create the retriever and chain to answer questions
     retriever = vectordb.as_retriever(search_kwargs={"k": 3})
-    qa_chain = RetrievalQA.from_chain_type(llm=turbo_llm,
-                                           chain_type="stuff",
-                                           retriever=retriever,
-                                           return_source_documents=True)
+
+    qa_chain = RetrievalQA.from_chain_type(
+                                        llm=turbo_llm,
+                                        chain_type="stuff",
+                                        retriever=retriever,
+                                        return_source_documents=True)
+    
+    prompt = "You are a chatbot to answer questions about health and wellness based on the documents provided to you. If you dont know the answer dont make up anything and just say you dont know."
+    llm_chain = qa_chain.combine_documents_chain.llm_chain
+    chat_prompt_template = llm_chain.prompt
+    system_message_prompt_template = chat_prompt_template.messages[0]  # Assuming it's the first in the list
+    system_message_prompt_template.prompt.template = prompt    
 
 
 @app.route('/new_chat', methods=['POST'])
@@ -90,7 +80,6 @@ def new_chat():
     Reinitialize the QAChain for a new chat session.
     """
     initialize_qa_chain()  # Reinitialize the QAChain and its components
-    
 
 @app.route('/chatbot', methods=['POST'])
 def handle_query():
@@ -111,6 +100,7 @@ def handle_query():
         return jsonify(response_data)
     else:
         return jsonify({"error": "No query provided"}), 400
+
 
 if __name__ == "__main__":
     initialize_qa_chain()  # Ensure the QA chain is initialized and ready before starting the app
