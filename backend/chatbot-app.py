@@ -83,6 +83,15 @@ def initialize_qa_chain():
                                            retriever=retriever,
                                            return_source_documents=True)
 
+
+@app.route('/new_chat', methods=['POST'])
+def new_chat():
+    """
+    Reinitialize the QAChain for a new chat session.
+    """
+    initialize_qa_chain()  # Reinitialize the QAChain and its components
+    
+
 @app.route('/chatbot', methods=['POST'])
 def handle_query():
     query = request.json["text"]    
