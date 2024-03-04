@@ -52,9 +52,19 @@ export default function Home() {
 		});
   };
 
+	const createNewChat = () => {
+		setUserPrompts([]);
+
+		const options = {
+			method: 'POST',
+		};
+
+		fetch('/new_chat', options);
+	};
+
   return (
 		<div className={styles.home}>
-			<Header />
+			<Header createNewChat={createNewChat}/>
 			<div className={styles.body}>
 				{(userPrompts.length === 0) ? <WelcomeMessage /> : <ChatHistory userPrompts={userPrompts} />}
 				<MessageBox sendUserPrompt={sendUserPrompt}/>
