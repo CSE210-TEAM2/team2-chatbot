@@ -12,8 +12,8 @@ const NewChatButton = ({createNewChat}) => {
   return (
     <div className={styles.newChatButton}>
       <button onClick={handleSubmit}>
-        <p>Clear chat</p>
         <img src={clearChat} alt="clear chat" /> 
+        <p>Clear chat</p>
       </button>
     </div>
   );
