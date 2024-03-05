@@ -5,5 +5,4 @@ langchain-core==0.1.26
 langchain-openai==0.0.7
 Werkzeug==2.2.2
 pypdf
-chromadb
-sqlite3== 3.35.0
+chromadb==0.3.29
