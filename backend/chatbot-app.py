@@ -17,23 +17,27 @@ qa_chain = None
 retriever = None
 
 
-# def update_db(persist_directory):
-#     # Load and process the text files
-#     loader = DirectoryLoader('./PDFs_Dataset', glob="./*.pdf", loader_cls=PyPDFLoader)
-#     documents = loader.load()
+def process_response_data(response_data):
+    """
+    Removes duplicate documents based on the 'source' key in the metadata of each document.
 
-#     # Splitting the text into smaller chunks
-#     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
-#     texts = text_splitter.split_documents(documents)
+    Args:
+    - response_data (dict): The original response data with source documents.
 
-#     # Embed and store the texts
-#     embedding = OpenAIEmbeddings(model='text-embedding-3-small')
+    Returns:
+    - dict: The updated response data without duplicate source documents.
+    """
+    unique_sources = set()
+    unique_documents = []
 
-#     vectordb = Chroma.from_documents(documents=texts,
-#                                      embedding=embedding,
-#                                      persist_directory=persist_directory)
-    
-#     return vectordb
+    for document in response_data['source_documents']:
+        source = document['metadata'].get('source')
+        if source not in unique_sources:
+            unique_sources.add(source)
+            unique_documents.append(document)
+
+    response_data['source_documents'] = unique_documents
+    return response_data
 
 
 def update_db(persist_directory):
@@ -97,6 +101,8 @@ def handle_query():
                 'metadata': doc.metadata
             } for doc in llm_response['source_documents']]
         }
+        
+        response_data = process_response_data(response_data)
         
         # Return the serialized response data as JSON
         return jsonify(response_data)
