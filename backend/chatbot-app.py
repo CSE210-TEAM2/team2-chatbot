@@ -86,8 +86,6 @@ def initialize_qa_chain():
                                            chain_type="stuff",
                                            retriever=retriever,
                                            return_source_documents=True)
-                        
-    print(qa_chain.combine_documents_chain.llm_chain.prompt)
                                            
     # Custom Prompt
     prompt = "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n{context}"
@@ -96,8 +94,6 @@ def initialize_qa_chain():
     chat_prompt_template = llm_chain.prompt
     system_message_prompt_template = chat_prompt_template.messages[0]  # Assuming it's the first in the list
     system_message_prompt_template.prompt.template = prompt
-    
-    print(qa_chain.combine_documents_chain.llm_chain.prompt)
 
 @app.route('/chatbot', methods=['POST'])
 def handle_query():
