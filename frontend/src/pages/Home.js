@@ -52,19 +52,13 @@ export default function Home() {
 		});
   };
 
-	const createNewChat = () => {
+	const clearChat = () => {
 		setUserPrompts([]);
-
-		const options = {
-			method: 'POST',
-		};
-
-		fetch('/new_chat', options);
 	};
 
   return (
 		<div className={styles.home}>
-			<Header createNewChat={createNewChat}/>
+			<Header clearChat={clearChat}/>
 			<div className={styles.body}>
 				{(userPrompts.length === 0) ? <WelcomeMessage /> : <ChatHistory userPrompts={userPrompts} />}
 				<MessageBox sendUserPrompt={sendUserPrompt}/>

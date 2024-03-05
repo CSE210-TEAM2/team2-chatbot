@@ -1,13 +1,13 @@
 import logo from '../media/img/logo.png'
 import styles from '../styles/components/Header.module.css';
-import NewChatButton from './NewChatButton';
+import ClearChatButton from './ClearChatButton';
 
-function Header({createNewChat}) {
+function Header({clearChat}) {
   return (
     <div className={styles.header}>
       <img src={logo} alt="logo" />
       <div className={styles.text}>TritonHealthBot</div>
-      <NewChatButton createNewChat={createNewChat}/>
+      <ClearChatButton clearChat={clearChat}/>
     </div>
   );
 }
