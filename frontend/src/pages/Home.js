@@ -52,9 +52,13 @@ export default function Home() {
 		});
   };
 
+	const clearChat = () => {
+		setUserPrompts([]);
+	};
+
   return (
 		<div className={styles.home}>
-			<Header />
+			<Header clearChat={clearChat}/>
 			<div className={styles.body}>
 				{(userPrompts.length === 0) ? <WelcomeMessage /> : <ChatHistory userPrompts={userPrompts} />}
 				<MessageBox sendUserPrompt={sendUserPrompt}/>
