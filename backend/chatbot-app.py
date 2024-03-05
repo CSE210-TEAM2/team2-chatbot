@@ -48,13 +48,12 @@ def update_db(persist_directory):
     # Load txt files
     txt_loader = DirectoryLoader('./Dataset/Webpages/Files', glob="./*.txt", loader_cls=TextLoader)
     txt_documents = txt_loader.load()
-    txt_documents = []
 
     # Combine PDF and txt documents
     documents = pdf_documents + txt_documents
 
     # Splitting the text into smaller chunks
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=50)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
     texts = text_splitter.split_documents(documents)
 
     # Embed and store the texts
