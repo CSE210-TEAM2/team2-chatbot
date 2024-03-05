@@ -4,6 +4,7 @@
   background-color: var(--primary-color);
   width: 100vw;
   padding: 5px 0; /* Adjust the padding as needed */
+  box-shadow: 0 3px 10px -5px gray;
 }
 
 .header img {

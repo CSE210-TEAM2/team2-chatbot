@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0; /* Adjust as needed */
+  margin: 0;
 }
   
 .topicButton {
@@ -18,4 +18,14 @@
 
 .topicButton:hover {
   background-color: var(--secondary-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .trendingTopic {
+    flex-direction: column;
+  }
+
+  .topicButton {
+    margin-bottom: 20px;
+  }
 }

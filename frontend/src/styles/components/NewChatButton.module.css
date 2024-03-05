@@ -30,3 +30,9 @@
 .newChatButton:hover button {
   background: var(--primary-color-light);
 }
+
+@media only screen and (max-width: 600px) {
+  .newChatButton p {
+    display: none;
+  }
+}
