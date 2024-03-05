@@ -6,3 +6,4 @@ langchain-openai==0.0.7
 Werkzeug==2.2.2
 pypdf
 chromadb
+sqlite3== 3.35.0
