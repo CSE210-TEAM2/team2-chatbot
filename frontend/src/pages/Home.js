@@ -60,7 +60,7 @@ export default function Home() {
 		<div className={styles.home}>
 			<Header clearChat={clearChat}/>
 			<div className={styles.body}>
-				{(userPrompts.length === 0) ? <WelcomeMessage /> : <ChatHistory userPrompts={userPrompts} />}
+				{(userPrompts.length === 0) ? <WelcomeMessage sendUserPrompt={sendUserPrompt} /> : <ChatHistory userPrompts={userPrompts} />}
 				<MessageBox sendUserPrompt={sendUserPrompt}/>
 			</div>
 		</div>
