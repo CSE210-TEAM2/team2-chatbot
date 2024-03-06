@@ -37,6 +37,7 @@ print("successfully running the server")
 
 
 def update_db(persist_directory):
+    print("update db start")
     # Load PDF files
     pdf_loader = DirectoryLoader('./Dataset/PDFs', glob="./*.pdf", loader_cls=PyPDFLoader)
     pdf_documents = pdf_loader.load()
@@ -58,7 +59,7 @@ def update_db(persist_directory):
     vectordb = Chroma.from_documents(documents=texts,
                                      embedding=embedding,
                                      persist_directory=persist_directory)
-    print("update db running")
+    print("update db finish")
     
     return vectordb
 
@@ -84,6 +85,7 @@ def initialize_qa_chain():
                                            chain_type="stuff",
                                            retriever=retriever,
                                            return_source_documents=True)
+    print("finish qa chain")
 
 @app.route('/chatbot', methods=['POST'])
 def handle_query():
@@ -100,7 +102,7 @@ def handle_query():
                 'metadata': doc.metadata
             } for doc in llm_response['source_documents']]
         }
-        
+        print("finish handling query")
         # Return the serialized response data as JSON
         return jsonify(response_data)
     else:
