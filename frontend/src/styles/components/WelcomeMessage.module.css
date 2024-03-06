@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 70vh;
-  margin: 30px 0;
+  height: 75vh;
+  margin-bottom: 20px;
 }
 
 .welcomeMessage img {
@@ -21,4 +21,11 @@
 
 .welcomeMessage h3 {
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .welcomeMessage p {
+    width: 65vw;
+    font-size: 1.1rem;
+  }
 }
