@@ -110,4 +110,4 @@ def handle_query():
 
 if __name__ == "__main__":
     initialize_qa_chain()  # Ensure the QA chain is initialized and ready before starting the app
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
