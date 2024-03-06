@@ -53,7 +53,7 @@ def update_db(persist_directory):
     documents = pdf_documents + txt_documents
 
     # Splitting the text into smaller chunks
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     texts = text_splitter.split_documents(documents)
 
     # Embed and store the texts
@@ -88,7 +88,7 @@ def initialize_qa_chain():
                                            return_source_documents=True)
                                            
     # Custom Prompt
-    prompt = "Use the following pieces of context to answer the user's question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n{context}"
+    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say that you don't know, don't try to make up an answer.\n----------------\n{context}"
     
     llm_chain = qa_chain.combine_documents_chain.llm_chain
     chat_prompt_template = llm_chain.prompt
