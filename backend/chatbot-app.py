@@ -15,7 +15,7 @@ app = Flask(__name__)
 # Initialize global variables for the chain and retriever
 qa_chain = None
 retriever = None
-
+print("successfully running the server")
 
 # def update_db(persist_directory):
 #     # Load and process the text files
@@ -58,11 +58,13 @@ def update_db(persist_directory):
     vectordb = Chroma.from_documents(documents=texts,
                                      embedding=embedding,
                                      persist_directory=persist_directory)
+    print("update db running")
     
     return vectordb
 
 
 def initialize_qa_chain():
+    print("initialzing qa chain")
     global qa_chain, retriever
 
     persist_directory = './vectordb'
@@ -85,6 +87,7 @@ def initialize_qa_chain():
 
 @app.route('/chatbot', methods=['POST'])
 def handle_query():
+    print("handling query")
     query = request.json["text"]    
     if query:
         llm_response = qa_chain(query)
