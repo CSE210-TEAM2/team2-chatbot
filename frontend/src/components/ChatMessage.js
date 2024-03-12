@@ -12,10 +12,9 @@ function FormatResponse(props) {
       <div dangerouslySetInnerHTML={{ __html: htmlString }} />
       <hr />
       {props.sources.map(source => {
-        const prefix = "https://github.com/CSE210-TEAM2/team2-chatbot/tree/main/backend/";
         const rp = source.metadata.source;
         const pageNumber = source.metadata.page;
-        return <li><a href={prefix + rp} target="_blank">{rp + ", page " + pageNumber}</a></li>;
+        return <li><a href={rp} target="_blank">{rp}</a></li>;
       })}	
     </div>
   )

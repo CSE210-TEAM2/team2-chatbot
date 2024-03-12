@@ -1,5 +1,7 @@
 # app.py
 import os
+import pickle
+import uuid
 from flask import Flask, request, jsonify
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
@@ -16,8 +18,11 @@ app = Flask(__name__)
 qa_chain = None
 retriever = None
 
+#Initialize global variable for the source map
+siteToSourceMap = None
 
-def process_response_data(response_data):
+
+def process_response_data(response_data, report_sources=True):
     """
     Removes duplicate documents based on the 'source' key in the metadata of each document.
 
@@ -27,6 +32,10 @@ def process_response_data(response_data):
     Returns:
     - dict: The updated response data without duplicate source documents.
     """
+
+    if not report_sources:
+        response_data['source_documents'] = None
+
     unique_sources = set()
     unique_documents = []
 
@@ -35,6 +44,20 @@ def process_response_data(response_data):
         if source not in unique_sources:
             unique_sources.add(source)
             unique_documents.append(document)
+    
+    #Replace the source in the document's metadata with the url to the site, acquired from the stored dict
+    for document in unique_documents:
+        #Only do this if the source is not a pdf
+        source = document['metadata']['source']
+        if source.endswith('.pdf'):
+            prefix = "https://github.com/CSE210-TEAM2/team2-chatbot/tree/main/backend/"
+            document['metadata']['source'] = prefix + source
+        else:
+            file_name = os.path.basename(source)
+            file_id = str(os.path.splitext(file_name)[0])
+            print(f"File ID: {file_id}")
+            site = siteToSourceMap[file_id]
+            document['metadata']['source'] = site
 
     response_data['source_documents'] = unique_documents
     return response_data
@@ -88,7 +111,7 @@ def initialize_qa_chain():
                                            return_source_documents=True)
                                            
     # Custom Prompt
-    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say that you don't know, don't try to make up an answer.\n----------------\n{context}"
+    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say \"I don't know\", don't try to make up an answer.\n----------------\n{context}"
     
     llm_chain = qa_chain.combine_documents_chain.llm_chain
     chat_prompt_template = llm_chain.prompt
@@ -119,5 +142,10 @@ def handle_query():
         return jsonify({"error": "No query provided"}), 400
 
 if __name__ == "__main__":
+    #Load in the site to source mapping
+    saved_dictionary_file = "./Dataset/filenames_to_urls.pickle"
+    with open(saved_dictionary_file, 'rb') as file:
+        siteToSourceMap = pickle.load(file)
+    
     initialize_qa_chain()  # Ensure the QA chain is initialized and ready before starting the app
     app.run(debug=True)
