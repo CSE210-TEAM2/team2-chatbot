@@ -13,8 +13,7 @@ function FormatResponse(props) {
       <hr />
       {props.sources.map(source => {
         const rp = source.metadata.source;
-        const pageNumber = source.metadata.page;
-        return <li><a href={rp} target="_blank">{rp}</a></li>;
+        return rp != "None" ? (<li><a href={rp} target="_blank">{rp}</a></li>) : null;
       })}	
     </div>
   )

@@ -22,7 +22,7 @@ retriever = None
 siteToSourceMap = None
 
 
-def process_response_data(response_data, report_sources=True):
+def process_response_data(response_data):
     """
     Removes duplicate documents based on the 'source' key in the metadata of each document.
 
@@ -33,8 +33,9 @@ def process_response_data(response_data, report_sources=True):
     - dict: The updated response data without duplicate source documents.
     """
 
-    if not report_sources:
-        response_data['source_documents'] = None
+    if "i don't know" in response_data['result'].lower():
+        response_data['source_documents'] = [{'page_content': 'None', 'metadata': {'source': 'None'}}]
+        return response_data
 
     unique_sources = set()
     unique_documents = []
@@ -111,7 +112,7 @@ def initialize_qa_chain():
                                            return_source_documents=True)
                                            
     # Custom Prompt
-    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say \"I don't know\", don't try to make up an answer.\n----------------\n{context}"
+    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say \"I don't know\".\n----------------\n{context}"
     
     llm_chain = qa_chain.combine_documents_chain.llm_chain
     chat_prompt_template = llm_chain.prompt
@@ -134,6 +135,7 @@ def handle_query():
             } for doc in llm_response['source_documents']]
         }
         
+
         response_data = process_response_data(response_data)
         
         # Return the serialized response data as JSON
