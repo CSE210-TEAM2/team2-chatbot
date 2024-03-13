@@ -34,7 +34,7 @@ function MessageBox({sendUserPrompt}) {
 				onKeyDown={handleKeyDown}
 				placeholder="Message TritonHealthBot..."
 			/>
-			<button className={styles.sendButton} onClick={handleSubmit}>&#x21E7;</button>
+			<button className={styles.sendButton} onClick={handleSubmit} data-testid="send-button">&#x21E7;</button>
 		</div>
 	);
 }
