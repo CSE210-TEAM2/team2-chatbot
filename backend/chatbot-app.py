@@ -34,7 +34,7 @@ def process_response_data(response_data):
     """
 
     if "i don't know" in response_data['result'].lower():
-        response_data['source_documents'] = []
+        response_data['source_documents'] = [{'page_content': 'None', 'metadata': {'source': 'None'}}]
         return response_data
 
     unique_sources = set()
