@@ -22,7 +22,7 @@ retriever = None
 siteToSourceMap = None
 
 
-def process_response_data(response_data, report_sources=True):
+def process_response_data(response_data):
     """
     Removes duplicate documents based on the 'source' key in the metadata of each document.
 
@@ -33,8 +33,9 @@ def process_response_data(response_data, report_sources=True):
     - dict: The updated response data without duplicate source documents.
     """
 
-    if not report_sources:
-        response_data['source_documents'] = None
+    if "i don't know" in response_data['result'].lower():
+        response_data['source_documents'] = []
+        return response_data
 
     unique_sources = set()
     unique_documents = []
@@ -134,6 +135,7 @@ def handle_query():
             } for doc in llm_response['source_documents']]
         }
         
+
         response_data = process_response_data(response_data)
         
         # Return the serialized response data as JSON
