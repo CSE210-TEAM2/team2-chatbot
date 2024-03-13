@@ -112,7 +112,7 @@ def initialize_qa_chain():
                                            return_source_documents=True)
                                            
     # Custom Prompt
-    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say \"I don't know\", don't try to make up an answer.\n----------------\n{context}"
+    prompt = "Use the following pieces of context to answer the user's question. \nIf you can not answer based on the context, just say \"I don't know\".\n----------------\n{context}"
     
     llm_chain = qa_chain.combine_documents_chain.llm_chain
     chat_prompt_template = llm_chain.prompt
