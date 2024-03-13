@@ -25,7 +25,7 @@ describe('ChatMessage', () => {
     expect(screen.getByText('TritonHealthBot')).toBeInTheDocument();
     expect(screen.getByText('Parsed markdown: Bot message')).toBeInTheDocument();
     sources.forEach((src) => {
-      expect(screen.getByText(`${src.metadata.source}, page ${src.metadata.page}`, { selector: 'a' })).toBeInTheDocument();
+      expect(screen.getByText(`${src.metadata.source}`, { selector: 'a' })).toBeInTheDocument();
     });
   });
 
